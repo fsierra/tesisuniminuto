@@ -1,0 +1,88 @@
+<?php
+/**
+ * @file
+ * Tesis blocks.
+ */
+
+/**
+ * Implements hook_menu().
+ */
+function tu_blocks_menu() {
+  $items['inicio'] = array(
+    'title' => 'Home',
+    'description' => 'Home page',
+    'page callback' => '_tu_blocks_home',
+    'access arguments' => array('access content'),
+  );
+
+  return $items;
+}
+
+/**
+ * Home page callback.
+ */
+function _tu_blocks_home() {
+  $content = array();
+  return $content;
+}
+
+/**
+ * Implements hook_block_info().
+ */
+function tu_blocks_block_info() {
+  $blocks['tu_block_user_buttons'] = array(
+    'info' => t('User Button'),
+    'cache' => DRUPAL_NO_CACHE
+  );
+
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function tu_blocks_block_view($delta = '') {
+  $block = array();
+
+  switch ($delta) {
+    case 'tu_block_user_buttons':
+      $block['subject'] = t('User Button');
+      $block['content'][] = _tu_blocks_user_button();
+      break;
+    
+  }
+  return $block;
+}
+
+/**
+ * User login button.
+ */
+function _tu_blocks_user_button() {
+  $content = array();
+  if (user_is_logged_in()) {
+    $content['my_account'] = array(
+      '#markup' => l(t('My account'), 'user', array(
+        'attributes' => array(
+          'class' => array('emall-account-button'),
+        ),
+      )),
+    );
+    $content['logout'] = array(
+      '#markup' => l(t('Logout'), 'user/logout', array(
+        'attributes' => array(
+          'class' => array('emall-logout-button'),
+        ),
+      )),
+    );
+  }
+  else {
+    $content['login'] = array(
+      '#markup' => l(t('Login'), 'load-login-form/ajax', array(
+        'attributes' => array(
+          'class' => array('emall-login-button', 'use-ajax'),
+        ),
+      )),
+    );
+  }
+  return $content;
+}

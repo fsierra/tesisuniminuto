@@ -1,4 +1,4 @@
-name = eMall blokcs
-description = eMall blocks
+name = tu blokcs
+description = tu blocks
 core = 7.x
-package = eMall
+package = TU

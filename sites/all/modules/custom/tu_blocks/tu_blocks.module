@@ -35,6 +35,11 @@ function tu_blocks_block_info() {
     'cache' => DRUPAL_NO_CACHE
   );
 
+  $blocks['tu_block_user_menu'] = array(
+    'info' => t('User menu'),
+    'cache' => DRUPAL_NO_CACHE
+  );
+
   return $blocks;
 }
 
@@ -49,7 +54,11 @@ function tu_blocks_block_view($delta = '') {
       $block['subject'] = t('User Button');
       $block['content'][] = _tu_blocks_user_button();
       break;
-    
+
+    case 'tu_block_user_menu':
+      $block['subject'] = '';
+      $block['content'] = _tu_blocks_user_menu();
+      break;
   }
   return $block;
 }
@@ -85,4 +94,23 @@ function _tu_blocks_user_button() {
     );
   }
   return $content;
+}
+
+/**
+ * User login button.
+ */
+function _tu_blocks_user_menu() {
+  $items = array();
+  global $user;
+  if (isset($user->roles[5])) {
+    $items[] = l(t('Mis proyectos'), 'mis-proyectos');
+  }
+  if (isset($user->roles[4])) {
+    $items[] = l(t('Mis proyectos'), 'mis-tproyectos');
+  }
+  $vars = array(
+    'items' => $items,
+    'type' => 'ul'
+  );
+  return theme('item_list', $vars);
 }

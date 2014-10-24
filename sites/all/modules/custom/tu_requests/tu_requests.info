@@ -2,3 +2,7 @@ name = tu request
 description = project requests
 core = 7.x
 package = TU
+
+dependencies[] = views
+
+files[] = views/handlers/tu_fields_handler.inc

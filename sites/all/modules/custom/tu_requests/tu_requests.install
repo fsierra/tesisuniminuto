@@ -29,6 +29,12 @@ function tu_requests_schema() {
         'not null' => TRUE,
         'default' => 0,
       ),
+      'tuid' => array(
+        'description' => 'The current {user}.uid project requets teacher.',
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+      ),
       'status' => array(
         'description' => 'Boolean indicating whether the node is published (visible to non-administrators).',
         'type' => 'int',

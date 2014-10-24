@@ -9,7 +9,7 @@
  */
 function tu_requests_views_api() {
   return array(
-    'api' => 3, 
+    'api' => 3,
     'path' => drupal_get_path('module', 'tu_requests') . '/views',
   );
 }
@@ -19,11 +19,11 @@ function tu_requests_views_api() {
  */
 function tu_requests_permission() {
   return array(
-    'request_teacher' =>  array(
+    'request_teacher' => array(
       'title' => t('Request teacher'),
       'description' => t('Request teacher'),
     ),
-    'response_request_teacher' =>  array(
+    'response_request_teacher' => array(
       'title' => t('Response request teacher'),
       'description' => t('Response request teacher'),
     ),
@@ -40,6 +40,12 @@ function tu_requests_menu() {
     'page callback' => 'drupal_get_form',
     'page arguments' => array('_tu_requests_est_form', 2),
     'access arguments' => array('request_teacher'),
+  );
+
+  $items['solicitudes'] = array(
+    'title' => 'Solicitudes',
+    'page callback' => '_tu_requests_request_page',
+    'access arguments' => array('response_request_teacher'),
   );
 
   $items['request/teacher/response/%node'] = array(
@@ -66,7 +72,7 @@ function tu_requests_menu() {
 function _tu_requests_teachers_autocomplete($string) {
   $users = array();
   $query = db_select('users', 'u');
-  $query->join('users_roles', 'ur', 'u.uid = ur.uid'); 
+  $query->join('users_roles', 'ur', 'u.uid = ur.uid');
   $query->fields('u', array('uid', 'name'));
   $query->condition('u.name', '%' . db_like($string) . '%', 'LIKE');
   $query->condition('ur.rid', 4);
@@ -85,9 +91,9 @@ function _tu_requests_teachers_autocomplete($string) {
 function _tu_requests_est_form($form, &$form_state, $node) {
   $form_state['strorage']['node'] = $node;
   $form['author']['name'] = array(
-    '#type' => 'textfield', 
-    '#title' => t('Profesor'), 
-    '#maxlength' => 60, 
+    '#type' => 'textfield',
+    '#title' => t('Profesor'),
+    '#maxlength' => 60,
     '#autocomplete_path' => 'request/teacher-item',
     '#required' => TRUE,
   );
@@ -98,9 +104,9 @@ function _tu_requests_est_form($form, &$form_state, $node) {
 }
 
 /**
- *  Title callback.
+ * Title callback.
  */
-function _response_request_title($node){
+function _response_request_title($node) {
   return t('Responder solicitud del proyecto @pro', array('@pro' => $node->title));
 }
 
@@ -160,17 +166,20 @@ function tu_requests_block_view($delta = '') {
   global $user;
   switch ($delta) {
     case 'bl_request_pen':
-      $num = db_select('tu_requests', 'tr')
-        ->fields('tr')
-        ->condition('tr.status', 0)
-        ->condition('tr.tuid', $user->uid)
-        ->countQuery()
-        ->execute()
-        ->fetchField();
+      if (user_is_logged_in() && isset($user->roles[4])) {
+        $num = db_select('tu_requests', 'tr')
+          ->fields('tr')
+          ->condition('tr.status', 0)
+          ->condition('tr.tuid', $user->uid)
+          ->countQuery()
+          ->execute()
+          ->fetchField();
+        $text = t('Solicitudes') . ' (' . $num . ')';
+        $block['content'] = l($text, 'solicitudes');
+      }
 
-      $block['content'] = t('Solicitudes') . ' (' . $num . ')';
       break;
-    
+
   }
   return $block;
 }
@@ -182,14 +191,14 @@ function tu_requests_block_view($delta = '') {
 function _tu_requests_response_form($form, &$form_state, $node) {
   $form_state['strorage']['node'] = $node;
   $form['status'] = array(
-     '#type' => 'select',
-     '#title' => t('Respuesta'),
-     '#options' => array(
-        1 => t('Aprovar'),
-        2 => t('Rechazar'),
-     ),
-     '#required' => TRUE,
-   );
+    '#type' => 'select',
+    '#title' => t('Respuesta'),
+    '#options' => array(
+      1 => t('Aprovar'),
+      2 => t('Rechazar'),
+    ),
+    '#required' => TRUE,
+  );
 
   $form['submit'] = array('#type' => 'submit', '#value' => t('Request'));
 
@@ -207,9 +216,9 @@ function _tu_requests_response_form_submit($form, &$form_state) {
     $node->field_project_teacher[LANGUAGE_NONE][0]['target_id'] = $user->uid;
     node_save($node);
   }
-  
+
   $nid = $form_state['strorage']['node']->nid;
-  db_update('tu_requests') 
+  db_update('tu_requests')
     ->fields(array(
       'status' => $status,
     ))
@@ -217,4 +226,36 @@ function _tu_requests_response_form_submit($form, &$form_state) {
     ->execute();
   $form_state['redirect'] = 'teacher-requests';
   drupal_set_message(t('Solicitud respondida correctamente'));
+}
+
+/**
+ * PAge solicitudes callback.
+ */
+function _tu_requests_request_page() {
+  global $user;
+  $rows = array();
+  $headers = array("Proyecto", "Enviado por", "Estado", "Enviado", "Acciones");
+  $query = db_select('tu_requests', 'tr')
+    ->fields('tr')
+    ->condition('tr.tuid', $user->uid);
+  $results = $query->execute();
+
+  while ($record = $results->fetchAssoc()) {
+    $status = ($record['status'] == 0) ? 'Pendiente' : (($record['status'] == 1) ? 'Aprovado' : 'Rechazado');
+    $node = node_load($record['nid']);
+    $action = ($record['status'] == 0) ? l(t('Constestar'), 'request/teacher/response/' . $record['nid']) : '-';
+    $rows[] = array(
+      $node->title,
+      user_load($record['uid'])->name,
+      $status,
+      date('d/m/Y', $record['created']),
+      $action,
+    );
+  }
+  return theme('table', array(
+    'header' => $headers,
+    'rows' => $rows,
+    'attributes' => array('class' => array('solitudes'))
+  ));
+
 }

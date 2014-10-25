@@ -337,7 +337,62 @@ form.comment-form{
     padding: 20px 0;
   }
 }
-
+//Form user 
+.not-logged-in .zone-branding{
+  text-align: center;
+  .region-branding{
+   margin: 0;
+  }
+  .branding-data{
+    float: none;
+  }
+}
+.not-logged-in{
+  .block-user-login{
+    margin: 61px auto;
+    width: 450px;
+    h2.block-title{
+      @extend %title;
+      margin-bottom: 38px;
+    }
+    form{
+      form-item{
+        margin: 7px 0;
+      }
+      label{
+        color: #0A2E7A;
+        font-size: 18px;
+        margin-bottom: 6px;
+      }      
+      .form-text{
+        border: none;
+        box-shadow: inset 1px 1px 10px rgb(136, 136, 136);
+        border-radius: 13px;
+        height: 43px;
+        width: 100%;
+      }
+      .item-list{
+        float: left;
+        margin-top: 8px;
+        li{
+          margin: 0;
+          a{
+            color:dimgrey;
+          }
+        } 
+      }
+      .form-actions{
+        float: right;
+        margin: 0;
+        input{
+          @extend %buttons;
+          font-weight: normal;
+          text-shadow: none;
+        }
+      }
+    }
+  } 
+}
 
 
 

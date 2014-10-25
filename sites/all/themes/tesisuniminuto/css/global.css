@@ -1,6 +1,6 @@
 /* This file will hold styles for the mobile version of your website (mobile first). */
 /* This also can include ANY global CSS that applies site-wide. Unless overwritten by a more specific style rule, CSS declarations in global.css will apply site-wide. */
-.zone-branding .block-user-menu .content ul li a, .node-project .node-links ul li a, .comment .comment-links a, form.comment-form .form-actions input, .block-bl-request-pen a {
+.zone-branding .block-user-menu .content ul li a, .node-project .node-links ul li a, .comment .comment-links a, form.comment-form .form-actions input, .block-bl-request-pen a, .not-logged-in .block-user-login form .form-actions input {
   background: #0A2E7A;
   border-radius: 2px;
   border: none;
@@ -11,12 +11,12 @@
   padding: 6px;
   text-decoration: none;
 }
-.zone-branding .block-user-menu .content ul li a:hover, .node-project .node-links ul li a:hover, .comment .comment-links a:hover, form.comment-form .form-actions input:hover, .block-bl-request-pen a:hover {
+.zone-branding .block-user-menu .content ul li a:hover, .node-project .node-links ul li a:hover, .comment .comment-links a:hover, form.comment-form .form-actions input:hover, .block-bl-request-pen a:hover, .not-logged-in .block-user-login form .form-actions input:hover {
   border-bottom: none;
   margin-top: 4px;
 }
 
-.node-project .field-type-text-with-summary, #comments h2.title {
+.node-project .field-type-text-with-summary, #comments h2.title, .not-logged-in .block-user-login h2.block-title {
   border-bottom: 2px solid #0a2e7a;
   color: #565656;
   font-size: 21px;
@@ -307,4 +307,55 @@ form.comment-form .form-actions input {
   font-size: 20px;
   margin: 20px 0 0 0;
   padding: 20px 0;
+}
+
+.not-logged-in .zone-branding {
+  text-align: center;
+}
+.not-logged-in .zone-branding .region-branding {
+  margin: 0;
+}
+.not-logged-in .zone-branding .branding-data {
+  float: none;
+}
+
+.not-logged-in .block-user-login {
+  margin: 61px auto;
+  width: 450px;
+}
+.not-logged-in .block-user-login h2.block-title {
+  margin-bottom: 38px;
+}
+.not-logged-in .block-user-login form form-item {
+  margin: 7px 0;
+}
+.not-logged-in .block-user-login form label {
+  color: #0A2E7A;
+  font-size: 18px;
+  margin-bottom: 6px;
+}
+.not-logged-in .block-user-login form .form-text {
+  border: none;
+  box-shadow: inset 1px 1px 10px #888888;
+  border-radius: 13px;
+  height: 43px;
+  width: 100%;
+}
+.not-logged-in .block-user-login form .item-list {
+  float: left;
+  margin-top: 8px;
+}
+.not-logged-in .block-user-login form .item-list li {
+  margin: 0;
+}
+.not-logged-in .block-user-login form .item-list li a {
+  color: dimgrey;
+}
+.not-logged-in .block-user-login form .form-actions {
+  float: right;
+  margin: 0;
+}
+.not-logged-in .block-user-login form .form-actions input {
+  font-weight: normal;
+  text-shadow: none;
 }

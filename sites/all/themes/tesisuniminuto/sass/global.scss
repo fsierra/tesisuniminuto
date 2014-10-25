@@ -299,7 +299,18 @@ form.comment-form{
     border-bottom-color: rgb(123, 121, 121);
   }
 }
-
+//Footer
+#section-footer{
+  text-align: center;
+  width: 100%;
+  .zone-footer-wrapper{
+    background: rgb(106, 106, 106);
+    color: #fff;
+    font-size: 20px;
+    margin: 20px 0 0 0;
+    padding: 20px 0;
+  }
+}
 
 
 

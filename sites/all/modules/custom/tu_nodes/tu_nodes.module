@@ -1,0 +1,43 @@
+<?php
+/**
+ * @file
+ * Tesis nodes.
+ */
+
+/**
+ * Implements hook_node_view().
+ */
+function tu_nodes_node_view($node, $view_mode, $langcode) {
+}
+
+/**
+ * Implements hook_node_access().
+ */
+function tu_nodes_node_access($node, $op, $account) {
+  global $user;
+  if (is_string($node)) {
+    return NODE_ACCESS_IGNORE;
+  }
+  if ($node->type == 'project') {
+    switch ($op) {
+      case 'update':
+      case 'view':
+        $students = field_get_items('node', $node, 'field_project_students');
+        if ($students) {
+          foreach ($students as $student) {
+            if ($student['target_id'] == $user->uid) {
+              return NODE_ACCESS_ALLOW;
+            }
+          }
+        }
+
+        $teacher = field_get_items('node', $node, 'field_project_teacher');
+        $teacher = isset($teacher[0]['target_id']) ? $teacher[0]['target_id'] : NULL;
+        if ($teacher && $teacher == $user->uid) {
+          return NODE_ACCESS_ALLOW;
+        }
+        return NODE_ACCESS_DENY;
+        break;
+    }
+  }
+}

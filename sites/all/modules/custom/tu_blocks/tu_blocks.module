@@ -40,6 +40,11 @@ function tu_blocks_block_info() {
     'cache' => DRUPAL_NO_CACHE
   );
 
+  $blocks['tu_block_footer'] = array(
+    'info' => t('Footer'),
+    'cache' => DRUPAL_NO_CACHE
+  );
+
   return $blocks;
 }
 
@@ -59,6 +64,19 @@ function tu_blocks_block_view($delta = '') {
       $block['subject'] = '';
       $block['content'] = _tu_blocks_user_menu();
       break;
+
+    case 'tu_block_footer':
+      $block['subject'] = '';
+      $block['content'][] = array(
+        '#type' => 'html_tag',
+        '#tag' => 'span',
+        '#value' => '© ' . date('Y') . ' tesis.uniminuto.com Todos los derechos reservados',
+        '#attributes' => array(
+          'class' => array('tu-bl-footer-msg'),
+        ),
+      );
+      break;
+
   }
   return $block;
 }

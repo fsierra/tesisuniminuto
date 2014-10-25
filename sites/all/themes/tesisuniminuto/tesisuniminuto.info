@@ -17,17 +17,15 @@ regions[branding] = Branding
 regions[menu] = Menu
 
 regions[sidebar_first] = Sidebar First
-regions[sidebar_second] = Sidebar Second
 
-regions[header_first] = Header First
-regions[header_second] = Header Second
-
+regions[footer_first] = Footer First
 
 ; ZONES
 
 zones[branding] = Branding
 zones[menu] = Menu
 zones[content] = Content
+zones[footer] = Footer
 
 ; OPTIONAL STYLESHEETS
 

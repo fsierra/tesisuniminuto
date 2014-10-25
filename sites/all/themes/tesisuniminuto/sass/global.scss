@@ -33,7 +33,6 @@ body{
 //Header
 #zone-branding-wrapper{
   background: #fff;
-  box-shadow: 1px 1px 10px rgb(111, 104, 104);
   padding: 10px 0;
 }
 .zone-branding{
@@ -56,7 +55,28 @@ body{
   }
 }
 //Menu
-
+#zone-menu-wrapper{
+  background: #0A2E7A;
+  margin-bottom:22px;
+  ul{
+    margin: 0;
+    li{
+      display: inline-block;
+      margin: 7px 0;
+      a{
+        border-right: 1px solid rgb(242, 230, 230);
+        color: #fff;
+        display: inline-block;
+        padding: 6px 10px;
+        text-decoration: none;
+        &:hover{
+          font-style: italic;
+          text-shadow: 1px 1px 10px rgb(55, 55, 55);
+        }
+      }
+    }
+  }
+}
 //Content
 table{
   width: 100%;
@@ -300,7 +320,13 @@ form.comment-form{
   }
 }
 //Footer
+.not-front .page{
+  padding-bottom: 92px;
+  position:relative;
+}
 #section-footer{
+  bottom: 0;
+  position: absolute;
   text-align: center;
   width: 100%;
   .zone-footer-wrapper{

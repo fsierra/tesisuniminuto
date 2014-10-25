@@ -31,7 +31,6 @@ body {
 
 #zone-branding-wrapper {
   background: #fff;
-  box-shadow: 1px 1px 10px #6f6868;
   padding: 10px 0;
 }
 
@@ -50,6 +49,29 @@ body {
 .zone-branding .block-user-menu .content ul li a {
   padding: 6px;
   width: 110px;
+}
+
+#zone-menu-wrapper {
+  background: #0A2E7A;
+  margin-bottom: 22px;
+}
+#zone-menu-wrapper ul {
+  margin: 0;
+}
+#zone-menu-wrapper ul li {
+  display: inline-block;
+  margin: 7px 0;
+}
+#zone-menu-wrapper ul li a {
+  border-right: 1px solid #f2e6e6;
+  color: #fff;
+  display: inline-block;
+  padding: 6px 10px;
+  text-decoration: none;
+}
+#zone-menu-wrapper ul li a:hover {
+  font-style: italic;
+  text-shadow: 1px 1px 10px #373737;
 }
 
 table {
@@ -268,7 +290,14 @@ form.comment-form .form-actions input {
   border-bottom-color: #7b7979;
 }
 
+.not-front .page {
+  padding-bottom: 92px;
+  position: relative;
+}
+
 #section-footer {
+  bottom: 0;
+  position: absolute;
   text-align: center;
   width: 100%;
 }

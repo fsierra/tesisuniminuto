@@ -1,0 +1,53 @@
+/*
+Error: Invalid CSS after "none": expected expression (e.g. 1px, bold), was ";"
+        on line 7 of C:/xampp/htdocs/tesisuniminuto/sites/all/themes/tesisuniminuto/sass/global.sass
+
+2: /* This also can include ANY global CSS that applies site-wide. Unless overwritten by a more specific style rule, CSS declarations in global.css will apply site-wide. *\/
+3: 
+4: //Global
+5: 
+6: .ini{
+7:   display: none;  
+8: }
+
+Backtrace:
+C:/xampp/htdocs/tesisuniminuto/sites/all/themes/tesisuniminuto/sass/global.sass:7
+C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.4.1/lib/sass/scss/parser.rb:1165:in `expected'
+C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.4.1/lib/sass/script/lexer.rb:220:in `expected!'
+C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.4.1/lib/sass/script/parser.rb:601:in `assert_done'
+C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.4.1/lib/sass/script/parser.rb:63:in `parse'
+C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.4.1/lib/sass/script/parser.rb:183:in `parse'
+C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.4.1/lib/sass/script.rb:27:in `parse'
+C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.4.1/lib/sass/engine.rb:1120:in `parse_script'
+C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.4.1/lib/sass/engine.rb:710:in `parse_property'
+C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.4.1/lib/sass/engine.rb:681:in `parse_property_or_rule'
+C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.4.1/lib/sass/engine.rb:647:in `parse_line'
+C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.4.1/lib/sass/engine.rb:525:in `build_tree'
+C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.4.1/lib/sass/engine.rb:544:in `block in append_children'
+C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.4.1/lib/sass/engine.rb:543:in `each'
+C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.4.1/lib/sass/engine.rb:543:in `append_children'
+C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.4.1/lib/sass/engine.rb:534:in `block in build_tree'
+C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.4.1/lib/sass/engine.rb:527:in `each'
+C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.4.1/lib/sass/engine.rb:527:in `build_tree'
+C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.4.1/lib/sass/engine.rb:544:in `block in append_children'
+C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.4.1/lib/sass/engine.rb:543:in `each'
+C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.4.1/lib/sass/engine.rb:543:in `append_children'
+C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.4.1/lib/sass/engine.rb:396:in `_to_tree'
+C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.4.1/lib/sass/engine.rb:268:in `render'
+C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.4.1/lib/sass/plugin/compiler.rb:492:in `update_stylesheet'
+C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.4.1/lib/sass/plugin/compiler.rb:215:in `block in update_stylesheets'
+C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.4.1/lib/sass/plugin/compiler.rb:209:in `each'
+C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.4.1/lib/sass/plugin/compiler.rb:209:in `update_stylesheets'
+C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.4.1/lib/sass/plugin/compiler.rb:470:in `on_file_changed'
+C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.4.1/lib/sass/plugin/compiler.rb:329:in `block in watch'
+C:/Ruby193/lib/ruby/gems/1.9.1/gems/listen-2.7.9/lib/listen/listener.rb:276:in `call'
+C:/Ruby193/lib/ruby/gems/1.9.1/gems/listen-2.7.9/lib/listen/listener.rb:276:in `_process_changes'
+C:/Ruby193/lib/ruby/gems/1.9.1/gems/listen-2.7.9/lib/listen/listener.rb:233:in `block in _wait_for_changes'
+C:/Ruby193/lib/ruby/gems/1.9.1/gems/listen-2.7.9/lib/listen/listener.rb:216:in `loop'
+C:/Ruby193/lib/ruby/gems/1.9.1/gems/listen-2.7.9/lib/listen/listener.rb:216:in `_wait_for_changes'
+C:/Ruby193/lib/ruby/gems/1.9.1/gems/listen-2.7.9/lib/listen/listener.rb:312:in `block in _start_wait_thread'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Error: Invalid CSS after \"none\": expected expression (e.g. 1px, bold), was \";\"\A         on line 7 of C:/xampp/htdocs/tesisuniminuto/sites/all/themes/tesisuniminuto/sass/global.sass\A \A 2: /* This also can include ANY global CSS that applies site-wide. Unless overwritten by a more specific style rule, CSS declarations in global.css will apply site-wide. */\A 3: \A 4: //Global\A 5: \A 6: .ini{\A 7:   display: none;  \A 8: }"; }

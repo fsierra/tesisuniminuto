@@ -1,0 +1,327 @@
+/* This file will hold styles for the mobile version of your website (mobile first). */
+/* This also can include ANY global CSS that applies site-wide. Unless overwritten by a more specific style rule, CSS declarations in global.css will apply site-wide. */
+
+//SASS
+%buttons{
+  background: #0A2E7A;
+  border-radius: 2px;
+  border:none;
+  border-bottom: 4px solid #141E35;
+  color: #fff;
+  display: inline-block;
+  font-size: 14px;
+  padding: 6px;
+  text-decoration: none;
+  &:hover{
+    border-bottom: none;
+    margin-top: 4px;
+  }
+}
+%title{
+  border-bottom: 2px solid #0a2e7a;
+  color: #565656;
+  font-size: 21px;
+  margin-bottom: 18px;
+  padding: 0 23px 4px 0;
+}
+//Global
+body{
+  background:url(../images/bg.png);
+  font-family: 'arial';
+}
+
+//Header
+#zone-branding-wrapper{
+  background: #fff;
+  box-shadow: 1px 1px 10px rgb(111, 104, 104);
+  padding: 10px 0;
+}
+.zone-branding{
+  .branding-data{
+    float:left;
+  }
+  .block-user-menu .content{
+    float: right;
+    ul li{
+      list-style: none;
+      margin: 8px 0;
+      padding: 0;
+      text-align: center;
+      a{
+        @extend %buttons;
+        padding: 6px;
+        width: 110px;
+      }
+    }
+  }
+}
+//Menu
+
+//Content
+table{
+  width: 100%;
+  caption{
+    color: rgb(105, 105, 105);
+    font-size: 20px;
+    margin-bottom: 4px;
+    text-align: left;
+  }
+  thead{
+    th{
+      background: #0A2E7A;
+      border:2px solid #fff;
+      color: #fff;
+      font:{
+        weight: bold;
+      }
+      padding: 6px;
+      text-align: center;
+    }
+  }
+  tbody{
+    tr{
+      background: #0A2E7A;
+      td{
+        padding: 6px;
+        vertical-align: middle;
+        text-align: center;
+        .item-list ul{
+          margin: 0;
+          li{
+            margin: 2px 0;      
+          }    
+        }
+      }
+    }
+  }
+}
+
+//Comentarios
+%info_proyec{
+  background: #fff;
+  box-shadow: 1px 1px 10px rgb(161, 161, 161);
+  border-radius: 4px;
+  display: inline-block;
+  min-height: 60px;
+  padding: 31px 1% 10px 1%;
+  position:relative;
+  vertical-align: top;
+  width: 30%;
+  .field-label{
+    background: #808080;
+    border-radius: 4px 4px 0 0;
+    color: #fff;
+    left: 0;
+    padding: 5px 0;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    width: 100%;
+  }
+}
+.node-project{
+  .field-type-text-with-summary{
+    @extend %title;
+  }
+  .field-name-field-project-students,
+  .field-name-field-project-teacher,
+  .field-name-field-career{
+    @extend %info_proyec;
+    .field-items{
+      color: #555;
+      .field-item{
+        padding-left: 11px;
+        position: relative;
+        &:before{
+          background: rgb(110, 110, 110);
+          border-radius: 30px;
+          content: '';
+          display: inline-block;
+          height: 8px;
+          left: 0;
+          position: absolute;
+          top: 4px;
+          width: 8px;
+        }
+      }
+    }
+  }
+  .field-name-field-project-students{
+    margin: 0 1%;
+    width: 32%;
+  }
+}
+.node-project{
+  .node-links{
+    margin-top: 22px;
+    ul li{
+      margin: 0;
+      padding: 0;
+      a{
+        @extend %buttons;
+      }
+    }
+  }
+}
+#comments{
+  h2.title{
+    @extend %title;
+  }
+}
+.comment{
+  background: #fff;
+  box-shadow: 1px 1px 10px rgb(140, 140, 140);
+  border-radius: 5px;
+  margin: 0 0 16px 0;
+  position: relative;
+  padding: 9px;
+  header{
+    h3{
+      margin-bottom: 5px;
+      a{
+        color: #0A2E7A;
+        text-decoration: none;
+      }
+    }
+  }
+  .field-name-comment-body{
+    color: rgb(103, 103, 103);
+    font-size: 14px;
+  }
+  .comment-links{
+    text-align: right;
+    a{
+      @extend %buttons;
+      font-size: 13px;
+    }
+  }
+  .comment-submitted{
+    color: rgb(97, 97, 97);
+    position: absolute;
+    font:{
+      size: 13px; 
+      weight: bold;
+    }
+    right: 9px;
+    top: 9px;
+    a{
+      color: #0A2E7A;
+      text-decoration: none;
+    }
+  }
+}
+.indented{
+  margin-left: 54px;
+  .comment{
+    background: rgb(221, 221, 221);
+  }
+}
+form.comment-form{
+  background: #F0F0F0;
+  box-shadow: inset 1px 1px 12px rgb(115, 115, 115);
+  border-radius: 10px; 
+  padding: 12px 76px;
+  label{ 
+    color: #555;
+    display: inline-block;
+    font-size: 19px;
+    margin-right: 17px;
+    width: 104px;
+  }
+  .form-type-item{
+    a{
+      color: #0A2E7A;
+      text-decoration: none;
+    }
+  }
+  fieldset.filter-wrapper{
+    display: none;
+  }
+  .form-type-textarea{
+    label{
+      margin-top: 40px;
+      vertical-align: top;
+    }
+    .textarea-processed{
+      display: inline-block;
+      width: 662px;
+      .grippie{
+        display: none;
+      }
+      textarea{
+        border: 1px solid rgb(176, 176, 176);
+        border-radius: 4px;
+        height: 110px;
+        max-height: 110px;
+        min-height: 110px;
+      }
+    }
+  }
+  .form-text{
+    border: 1px solid rgb(176, 176, 176);
+    height: 33px;
+    border-radius: 4px;
+    width: 662px;
+  }
+  .field-name-field-project-files{
+    .fieldset-legend{
+      display: none;
+    }
+    .form-type-managed-file{
+      label{
+        vertical-align: top;
+        width: 179px;
+      }
+      .form-managed-file{
+        display: inline-block;
+        width: 500px;
+      }
+      .description{
+        color: #555;
+        font-size: 12px;
+      }
+    }
+  }
+  .form-actions{
+    text-align: right;
+    input{
+      @extend %buttons;
+      font-weight: normal;
+      text-shadow: none;
+    }
+  }
+}
+.block-bl-request-pen{
+  text-align: right;
+  a{
+    @extend %buttons;
+    background: rgb(144, 144, 144);
+    border-bottom-color: rgb(123, 121, 121);
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

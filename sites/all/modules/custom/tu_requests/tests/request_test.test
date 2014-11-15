@@ -1,0 +1,139 @@
+<?php
+/**
+ * @file
+ * Tesis requests.
+ */
+
+$_SERVER['REMOTE_ADDR'] = '127.0.0.1';
+
+// Bootstrap Drupal.
+drupal_bootstrap(DRUPAL_BOOTSTRAP_FULL);
+
+/**
+ * Tests the functionality of the Simpletest example content type.
+ */
+class RequestTest extends DrupalWebTestCase {
+  protected $privileged_user;
+
+ public static function getInfo() {
+    // Note: getInfo() strings are not translated with t().
+    return array(
+      'name' => 'RequestTest UNIMINUTO',
+      'description' => 'Ensure that the RequestTest content type provided functions properly.',
+      'group' => 'TesisUniminuto',
+    );
+  }
+
+ public function setUp() {
+    // Enable any modules required for the test. This should be an array of
+    // module names.
+    parent::setUp(array('simpletest_example'));
+    // Create and log in our privileged user.
+    $this->privileged_user = $this->drupalCreateUser(array(
+      'create simpletest_example content',
+      'extra special edit any simpletest_example',
+      ));
+    $this->drupalLogin($this->privileged_user);
+  }
+
+
+  public function RequestTestCreateProyect() {
+    // Create node to edit.    
+    $edit = array();
+    $edit['title'] = $this->randomName(8);
+    $edit["body[und][0][value]"] = $this->randomName(16);
+    $this->drupalPost('node/add/project', $edit, t('Save'));
+    $this->assertText(t('Proyecto fue creado.', array('@title' => $edit['title'])));
+  }
+
+}
+
+
+/**
+ * Tests the functionality of the Simpletest example content type.
+ */
+class RequestTestCreateProyects extends DrupalWebTestCase {
+  protected $privileged_user;
+
+ public static function getInfo() {
+    // Note: getInfo() strings are not translated with t().
+    return array(
+      'name' => 'RequestTest Crear proyecto',
+      'description' => 'Ensure that the RequestTest content type provided functions properly.',
+      'group' => 'TesisUniminuto',
+    );
+  }
+
+  function setUp() {
+    parent::setUp();
+  }
+
+
+  public function RequestTestCreateProyect() {
+    // Create node to edit.    
+    $edit = array();
+    $edit['title'] = $this->randomName(8);
+    $edit["body[und][0][value]"] = $this->randomName(16);
+    $this->drupalPost('node/add/project', $edit, t('Save'));
+    $this->assertText(t('Proyecto fue creado.', array('@title' => $edit['title'])));
+  }
+}
+
+
+/**
+ * Tests the functionality of the Simpletest example content type.
+ */
+class RequestTestCreateUser extends DrupalWebTestCase {
+  protected $privileged_user;
+
+ public static function getInfo() {
+    // Note: getInfo() strings are not translated with t().
+    return array(
+      'name' => 'RequestTest Usuario',
+      'description' => 'Prueba.',
+      'group' => 'TesisUniminuto',
+    );
+  }
+
+  function setUp() {
+    parent::setUp();
+  }
+
+
+  public function RequestTestCreateUser() {
+    // Create node to edit.    
+    $this->admin_user = $this->drupalCreateUser(array(
+      'administer content types',
+      'administer permissions',
+      'create mynewtype content',
+      'edit any mynewtype content'
+      ));
+    $this->assertText(t('Usuario creado'));
+  }
+}
+
+/**
+ * Tests the functionality of the Simpletest example content type.
+ */
+class RequestTestCrearSolicitud extends DrupalWebTestCase {
+  protected $privileged_user;
+
+ public static function getInfo() {
+    // Note: getInfo() strings are not translated with t().
+    return array(
+      'name' => 'RequestTest Crear solicutud',
+      'description' => 'Crear solicitud.',
+      'group' => 'TesisUniminuto',
+    );
+  }
+
+  function setUp() {
+    parent::setUp();
+  }
+
+
+  public function RequestTestCrearSolicitud() {
+    return TRUE;
+  }
+}
+

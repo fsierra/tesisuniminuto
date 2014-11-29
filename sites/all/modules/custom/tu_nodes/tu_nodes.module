@@ -5,10 +5,58 @@
  */
 
 /**
- * Implements hook_node_view().
+ * Implements hook_permission().
  */
-function tu_nodes_node_view($node, $view_mode, $langcode) {
+function tu_nodes_permission() {
+  return array(
+    'create events' =>  array(
+      'title' => t('Crear eventos'),
+      'description' => t('Crear eventos'),
+    ),
+  );
 }
+
+/**
+ * Implements hook_menu().
+ */
+function tu_nodes_menu() {
+  $items['crear/evento'] = array(
+    'title' => 'Crear evento',
+    'page callback' => 'tu_nodes_events_form',
+    'access arguments' => array('create events'),
+  );
+
+  return $items;
+}
+
+/**
+ * Event custom form().
+ */
+function tu_nodes_events_form() {
+  module_load_include('inc', 'node', 'node.pages');
+  $form = node_add('event');
+  return drupal_render($form);
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function tu_nodes_form_alter(&$form, &$form_state, $form_id) {
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter() for event_node_form().
+ */
+function tu_nodes_form_event_node_form_alter(&$form, &$form_state, $form_id) {
+  $form['path']['#access'] = FALSE;
+  $form['comment_settings']['#access'] = FALSE;
+  $form['author']['#access'] = FALSE;
+  $form['options']['#access'] = FALSE;
+  $form['revision_information']['#access'] = FALSE;
+  $form['actions']['preview']['#access'] = FALSE;
+  $form['body']['und'][0]['summary']['#access'] = FALSE;
+}
+
 
 /**
  * Implements hook_node_access().

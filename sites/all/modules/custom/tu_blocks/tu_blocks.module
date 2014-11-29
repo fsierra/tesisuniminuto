@@ -45,6 +45,11 @@ function tu_blocks_block_info() {
     'cache' => DRUPAL_NO_CACHE
   );
 
+  $blocks['tu_block_calendar_li'] = array(
+    'info' => t('Calendar links'),
+    'cache' => DRUPAL_NO_CACHE
+  );
+
   return $blocks;
 }
 
@@ -75,6 +80,11 @@ function tu_blocks_block_view($delta = '') {
           'class' => array('tu-bl-footer-msg'),
         ),
       );
+      break;
+
+    case 'tu_block_calendar_li':
+      $block['subject'] = '';
+      $block['content'] = _tu_blocks_calendar();
       break;
 
   }
@@ -122,9 +132,11 @@ function _tu_blocks_user_menu() {
   global $user;
   if (isset($user->roles[5])) {
     $items[] = l(t('Mis proyectos'), 'mis-proyectos');
+    $items[] = l(t('Calendario'), 'calendario/meses');
   }
   if (isset($user->roles[4])) {
     $items[] = l(t('Mis proyectos'), 'mis-tproyectos');
+    $items[] = l(t('Calendario'), 'calendario/meses');
   }
   $vars = array(
     'items' => $items,
@@ -132,3 +144,20 @@ function _tu_blocks_user_menu() {
   );
   return theme('item_list', $vars);
 }
+
+/**
+ * User login button.
+ */
+function _tu_blocks_calendar() {
+  $items = array();
+  $items[] = l(t('Por año'), 'calendario/ano');
+  $items[] = l(t('Por meses'), 'calendario/meses');
+  $items[] = l(t('Por día'), 'calendario/dia');
+  $vars = array(
+    'items' => $items,
+    'type' => 'ul'
+  );
+  return theme('item_list', $vars);
+
+}
+

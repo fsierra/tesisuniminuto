@@ -359,3 +359,7 @@ form.comment-form .form-actions input {
   font-weight: normal;
   text-shadow: none;
 }
+
+#edit-body-und-0-format{
+  display: none;
+}

@@ -3,6 +3,8 @@ description = project requests
 core = 7.x
 package = TU
 
+testing_api = 2.x
 dependencies[] = views
 
 files[] = views/handlers/tu_fields_handler.inc
+files[] = tests/request_test.test
